@@ -1,0 +1,38 @@
+@mixin linkIcon($linkIcon_deg, $linkIcon_size:0.8rem, $linkIcon_margin:-8px, $linkIcon_color:#fff){
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        right: 1.5rem;
+        width: $linkIcon_size;
+        height: $linkIcon_size;
+        margin-top: $linkIcon_margin;
+        border-top: 3px solid $linkIcon_color;
+        border-right: 3px solid $linkIcon_color;
+        @if ($linkIcon_deg == 'left') {
+            transform: rotate(225deg);
+        }
+        @else if ($linkIcon_deg == 'top') {
+            transform: rotate(-45deg);
+        }
+        @else if ($linkIcon_deg == 'right') {
+            transform: rotate(45deg);
+        }
+        @else if ($linkIcon_deg == 'bottom') {
+            transform: rotate(135deg);
+        }
+    }
+}
+
+@mixin link_webIcon($content,$weight,$size,$left) {
+    &::after {
+        font-family: "Font Awesome 5 Free";
+        content: $content;
+        font-size: $size;
+        font-weight: $weight;
+        margin-left: $left;
+    }
+}

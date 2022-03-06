@@ -1,0 +1,433 @@
+@import "../scss/variables/_style_variables.scss";
+@import "../scss/components/_linkicon.scss";
+
+/*====================// All //====================*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'メイリオ', Meiryo,'ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
+}
+ul li {
+    list-style: none;
+    float: left;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+a:hover {
+    opacity: 0.7;
+}
+/*====================// All //====================*/
+
+/*====================// common //====================*/
+header, main, footer {
+    margin: $content_margin;
+    width: $content_witdh;
+    padding: $content_padding;
+    @media screen and (max-width: 640px) {
+        width: 100%;
+        padding: 10vw 0;
+    }
+}
+#header_menu, .bread_crumb, .list_menu, .list_link, .infomation_store, .footer_menu__category, .footer_menu, .footer_menu_bottom {
+    overflow: hidden;
+}
+#header_menu ul li a, .list_link, .infomation_store__notice, .infomation_store__more,  .footer_menu__category ul li a, .footer_menu_bottom {
+    font-size: $font_size;
+    @media screen and (max-width: 640px) {
+        font-size: 4vw;
+    }
+}
+/*====================// common //====================*/
+
+/*====================// Header //====================*/
+header {
+    height: 60px;
+    line-height: 60px;
+    @media screen and (max-width: 640px) {
+        height: 14vw;
+        line-height: 14vw;
+    }
+    .header_logo, #header_menu {
+        display: inline-block;
+    }
+    .header_logo {
+        @include link_webIcon('\f2e7',600,3rem,2rem);
+        @media screen and (max-width: 640px) {
+            margin-left: 5vw;
+        }
+    }
+    #header_menu {
+        margin-left: 200px;
+        ul li {
+            width: 120px;
+            text-align: center;
+            @media screen and (max-width: 640px) {
+                float: initial;
+                width: 100%;
+                padding: 2vw 0;
+                background: #5b5b5b;
+                opacity: 0.9;
+                border-bottom: 0.5vw solid #fff;
+            }
+        }
+        ul li a {
+            @media screen and (max-width: 640px) {
+                color: #fff;
+                font-weight: bold;
+            }
+        }
+        @media screen and (max-width: 640px) {
+            position: fixed;
+            top: -100vw;
+            right: 0;
+            width: 100%;
+            z-index: 1;
+            transition: 1s;
+        }
+    }
+    #header_menu.open {
+        @media screen and (max-width: 640px) {
+            top: 0;
+            display: block;
+            transition: 1s;
+        }
+    }
+    #header_hamburger {;
+        display: none;
+        @media screen and (max-width: 640px) {
+            position: fixed;
+            top: 2vw;
+            right: 2vw;
+            display: block;
+            width: 14vw;
+            height: 12vw;
+            background: #000;
+            z-index: 2;
+        }
+        span,
+        span::before,
+        span::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 10vw;
+            height: 1vw;
+            background: #fff;
+            border-radius: 1vw;
+            transition: 0.5s;
+        }
+        span {
+            margin: 3vw 0 0 2vw;
+        }
+        span::before {
+            margin-top: 2.5vw;
+        }
+        span::after {
+            margin-top: 5vw;
+        }
+    }
+    #header_hamburger.open {
+        span {
+            margin-top: 1vw;
+            background: rgba(0,0,0,0);
+            transition: 0.5s;
+        }
+        span::before {
+            top: 2vw;
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+        span::after {
+            top: -0.2vw;
+            transform: rotate(-45deg);
+            transition: 0.5s;
+        }
+    }
+}
+/*====================// Header //====================*/
+
+/*====================// Main //====================*/
+main {
+    /*==========// パンくず //==========*/
+    .bread_crumb {
+        margin-top: -25px;
+        height: 25px;
+        @media (max-width: 640px) {
+            margin: -10vw 0 0 5vw;
+            height: 5vw;
+        }
+        ul li {
+            position: relative;
+            margin-right: 20px;
+            font-size: $font_size - 2px;
+        }
+        ul li::after {
+            content: '>';
+            position: absolute;
+            top: 0;
+            right: -15px;
+            display: block;
+        }
+        ul li:last-child::after {
+            content: none;
+        }
+    }
+    /*==========// スライドショー //==========*/
+    .slide_visual {
+        width: $content_witdh - 60px;
+        padding: 25px 30px;
+        @media (max-width: 640px) {
+            width: 100%;
+            padding: 10vw 0;
+        }
+        #slide_visual__img {
+            img {
+                width: 100%;
+            }
+            .slick-arrow {
+                @media (max-width: 640px) {
+                    display: none!important;
+                }
+            }
+            .slick-prev:before {
+                content: '<';
+                margin-right: 10px;
+                color: #000;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 30px;
+            }
+            .slick-next:before {
+                content: '>';
+                margin-left: 10px;
+                color: #000;
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 30px;
+            }
+            .slide-dots {
+                text-align: center;
+                li {
+                    float: initial;
+                    display: inline-block;
+                    margin-right: 30px;
+                    button {
+                        position: relative;
+                        text-indent: -9999px;
+                        border: none;
+                        background: none;
+                    }
+                    button:before {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        text-indent: 0;
+                        content: '○';
+                        font-size: 24px;
+                    }
+                }
+                li.slick-active button::before {
+                    top: -4px;
+                    content: '●';
+                    font-size: 28px;
+                }
+            }
+        }
+    }
+    /*==========// メニュー表 //==========*/
+    .list_menu {
+        margin: $content_margin;
+        padding: $content_padding;
+        width: $content_witdh - 80px;
+        @media (max-width: 640px) {
+            $content_padding: 20vw 0;
+            width: 95%;
+        }
+        ul li {
+            margin: 0 15px 10px 0;
+            width: 290px;
+            img {
+                width: 100%;
+            }
+            .list_menu__name {
+                font-size: $font_size + 2px;
+                @media (max-width: 640px) {
+                    font-size: 4vw;
+                }
+            }
+            .list_menu__name, .list_menu__price {
+                text-align: right;
+                @media (max-width: 640px) {
+                    font-size: 4vw;
+                }
+            }
+            @media screen and (max-width: 640px) {
+                margin: 0 3% 5% 0;
+                width: 48.5%;
+            }
+        }
+        ul li:nth-child(3n) {
+            margin-right: 0;
+            @media screen and (max-width: 640px) {
+                margin-right: 0;
+            }
+        }
+        ul li:nth-child(even) {
+            @media screen and (max-width: 640px) {
+                margin-right: 0;
+            }
+        }
+    }
+    /*==========// 各種リンク //==========*/
+    .list_link {
+        margin: 0 auto;
+        width: 720px;
+        padding: $content_padding;
+        @media (max-width: 640px) {
+            width: 90vw;
+            $content_padding: 20vw 0;
+        }
+        ul li {
+            display: inline-flex;
+            margin: 0 20px 10px 0;
+            @media (max-width: 640px) {
+                margin: 0 4vw 3vw 0;
+            }
+        }
+        ul li:nth-child(even) {
+            margin-right: 0;
+        }
+        ul li:last-child {
+            margin-left: calc(50% - 175px);
+            margin-bottom: 0;
+        }
+        ul li a {
+            position: relative;
+            padding: 8px 140px;
+            font-size: $font_size;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 4px;
+            color: #fff;
+            background: #aaa;
+            @include linkIcon($linkIcon_deg:right);
+            @media (max-width: 640px) {
+                padding: 2vw 11vw;
+                font-size: 4vw;
+                border-radius: 1.5vw;
+                @include linkIcon($linkIcon_size:2vw,$linkIcon_margin:-1.5vw,$linkIcon_deg:right);
+            }
+        }
+    }
+    /*==========// 店舗情報 //==========*/
+    .infomation_store {
+        padding: $content_padding;
+        .infomation_store__map {
+            float: left;
+            @media screen and (max-width: 640px) {
+                float: initial;
+            }
+            iframe {
+                width: 500px;
+                height: 300px;
+                @media screen and (max-width: 640px) {
+                    width: 100%;
+                    height: 60vw;
+                }
+            }
+        }
+        .infomation_store__name, .infomation_store__notice, .infomation_store__more {
+            margin: 10px 10px 10px 20px;
+            width: 450px;
+            float: left;
+            @media screen and (max-width: 640px) {
+                margin: 2vw 5vw;
+                width: 90vw;
+                float: initial;
+            }
+        }
+        .infomation_store__name {
+            margin-top: 80px;
+            font-size: $font_size + 2px;
+            @media screen and (max-width: 640px) {
+                margin-top: 10vw;
+                font-size: 5vw;
+            }
+        }
+        .infomation_store__notice {
+            ul li {
+                float: initial;
+            }
+        }
+        .infomation_store__more {
+            text-align: right;
+            font-size: $font_size - 2px;
+            @media screen and (max-width: 640px) {
+                font-size: 3.5vw;
+            }
+        }
+    }
+}
+/*====================// Main //====================*/
+
+/*====================// Footer //====================*/
+footer {
+    background: #eee;
+    .footer_menu {
+        margin-bottom: 40px;
+        @media screen and (max-width: 640px) {
+            margin: 0 auto 5vw;
+            width: 90vw;
+        }
+        .footer_logo {
+            margin-left: 20px;
+            float: left;
+            @include link_webIcon('\f2e7',600,2rem,1rem);
+            @media screen and (max-width: 640px) {
+                margin: 0 5vw 0 0;
+            }
+        }
+        .footer_menu__category {
+            margin-left: 150px;
+            float: left;
+            @media screen and (max-width: 640px) {
+                display: inline-block;
+                margin-left: 0;
+                float: initial;
+            }
+            p {
+                font-size: $font_size + 2px;
+                @media screen and (max-width: 640px) {
+                    font-size: 4.2vw;
+                }
+            }
+            ul {
+                text-align: center;
+            } li {
+                float: initial;
+                @media screen and (max-width: 640px) {
+                    font-size: 3.5vw;
+                }
+            }
+        }
+    }
+    .footer_menu_bottom {
+        text-align: center;
+        clear: both;
+        ul {
+            display: inline-block;
+        } li {
+            padding: 0 20px;
+            text-align: center;
+            @media screen and (max-width: 640px) {
+                width: 50%;
+                padding: 0;
+            }
+        }
+    }
+}
+/*====================// Footer //====================*/
